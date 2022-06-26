@@ -1,1 +1,1 @@
-const tags = ['urgent', 'important', 'normal', 'unimportant'];
+export const tags = ['Normal', 'Urgent', 'Important', 'Unimportant'];

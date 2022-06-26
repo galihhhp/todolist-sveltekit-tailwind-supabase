@@ -12,6 +12,6 @@
   // $: test();
 </script>
 
-<div class="relative min-h-screen bg-[#191919] text-neutral-200 p-4">
+<div class="relative min-h-screen bg-neutral-100 text-neutral-900 p-4">
   <slot />
 </div>
