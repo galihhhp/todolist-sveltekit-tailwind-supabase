@@ -160,6 +160,11 @@
   dependencies:
     "@types/node" "*"
 
+"@zerodevx/svelte-toast@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@zerodevx/svelte-toast/-/svelte-toast-0.7.2.tgz#904610b7d99d099bcdb83a005ee32e0b3351c909"
+  integrity sha512-vWiY6IqsstcOoQ8PFBuFuxgPkj1JFAGhUF9gC7wLx7c5A9SSfdtxWs/39ekGSIeyJK0yqWhTcmzGrCEWSELzDw==
+
 acorn-node@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/acorn-node/-/acorn-node-1.8.2.tgz#114c95d64539e53dede23de8b9d96df7c7ae2af8"
@@ -562,6 +567,11 @@ fill-range@^7.0.1:
   integrity sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==
   dependencies:
     to-regex-range "^5.0.1"
+
+flatpickr@^4.5.2:
+  version "4.6.13"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.13.tgz#8a029548187fd6e0d670908471e43abe9ad18d94"
+  integrity sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==
 
 fraction.js@^4.2.0:
   version "4.2.0"
@@ -1029,6 +1039,13 @@ svelte-check@^2.2.6:
     sade "^1.7.4"
     svelte-preprocess "^4.0.0"
     typescript "*"
+
+svelte-flatpickr@^3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/svelte-flatpickr/-/svelte-flatpickr-3.2.6.tgz#595a97b2f25a669e61fe743f90a10dce783bbd49"
+  integrity sha512-0ePUyE9OjInYFqQwRKOxnFSu4dQX9+/rzFMynq2fKYXx406ZUThzSx72gebtjr0DoAQbsH2///BBZa5qk4qZXg==
+  dependencies:
+    flatpickr "^4.5.2"
 
 svelte-hmr@^0.14.12:
   version "0.14.12"
