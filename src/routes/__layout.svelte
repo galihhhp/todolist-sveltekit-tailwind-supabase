@@ -1,22 +1,15 @@
 <script>
-  import supabase from '@lib/db';
   import '../app.css';
   import { SvelteToast } from '@zerodevx/svelte-toast';
-
-  // const test = async () => {
-  //   const { data, error } = await supabase.from('todos').select('*');
-
-  //   console.log(data);
-  //   console.log(error);
-  // };
-
-  // $: test();
+  import AuthWrapper from '@comp/auth/authWrapper.svelte';
 </script>
 
-<div class="relative min-h-screen bg-neutral-100 text-neutral-900 p-4 wrap">
-  <SvelteToast />
-  <slot />
-</div>
+<AuthWrapper>
+  <div class="relative min-h-screen bg-neutral-100 text-neutral-900 p-4 wrap">
+    <SvelteToast />
+    <slot />
+  </div>
+</AuthWrapper>
 
 <style>
   .wrap {

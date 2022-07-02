@@ -1,6 +1,6 @@
 <script>
   import { deleteTodo, toggleTodo } from '@lib/query/todo';
-  import { toastFailed, toastSuccess } from '@lib/utils/toast';
+  import { user } from '@lib/stores/user';
 
   export let todo, getTodos;
   let isToggleClicked = false;
@@ -34,8 +34,7 @@
       <div
         class="bg-green-700 p-2 rounded-md cursor-pointer"
         on:click={async () => {
-          await toggleTodo(todo.id, true);
-          toastSuccess(`DONE: ${todo.title} is done!`);
+          await toggleTodo(todo.id, true, todo.title, $user?.id);
           setTimeout(() => {
             isLoading = false;
           }, 500);
@@ -69,8 +68,7 @@
       <div
         class="self-end bg-red-700 p-2 rounded-md cursor-pointer"
         on:click={async () => {
-          await deleteTodo(todo.id);
-          toastFailed(`DELETE: ${todo.title} is deleted!`);
+          await deleteTodo(todo.id, todo.title, $user?.id);
           setTimeout(() => {
             isLoading = false;
           }, 500);

@@ -1,20 +1,12 @@
 <script>
   import supabase from '@lib/db';
-  import OptionsMenu from '@comp/optionsMenu.svelte';
   import Todos from '@pages/todos.svelte';
-  import Input from '@comp/input.svelte';
-  import { addTodo } from '@lib/query/todo';
   import { toastFailed, toastSuccess } from '@lib/utils/toast';
   import TodosSkeleton from '@comp/skeletons/todosSkeleton.svelte';
   import PageSkeleton from '@comp/skeletons/pageSkeleton.svelte';
+  import { user } from '@lib/stores/user';
+  import AddTodo from '@comp/form/addTodo.svelte';
 
-  // import { getTodos } from '@lib/query/todo';
-
-  let title = '';
-  let desc = '';
-  let deadline = new Date();
-  let placeholder = 'What needs to be done?';
-  let descPlaceholder = 'Add a description';
   let startPage = 0;
   let endPage = 9;
   let isLoading = false;
@@ -27,11 +19,12 @@
       .from('todos')
       .select('*')
       .order('created_at', { ascending: true })
-      .range(startPage, endPage);
+      .range(startPage, endPage)
+      .eq('user_id', $user?.id);
 
     if (error) {
       console.log(error);
-      toastFailed('Failed to load todos');
+      // toastFailed('Failed to load todos');
       isLoading = false;
     }
     if (data) {
@@ -46,29 +39,7 @@
 {:then}
   <div class="flex flex-col">
     <div class="flex justify-center items-center mt-4 w-full h-screen">
-      <div
-        class="flex flex-col w-1/2 px-40 border-r border-neutral-300 h-screen justify-center"
-      >
-        <Input title="Title" {placeholder} bind:value={title} />
-        <Input
-          title="Description"
-          placeholder={descPlaceholder}
-          bind:value={desc}
-        />
-        <Input title="Deadline" isDatePicker bind:value={deadline} />
-
-        <button
-          class="bg-green-700 p-2 rounded-md text-neutral-100"
-          on:click={async () => {
-            await addTodo(title, desc, deadline);
-            toastSuccess(`ADD: ${title} is added!`);
-            title = '';
-            desc = '';
-            deadline = new Date();
-            await getTodos();
-          }}>Add todo</button
-        >
-      </div>
+      <AddTodo {getTodos} {isLoading} />
       <div class="flex flex-col justify-center items-center gap-2 w-1/2">
         <h1 class="font-bold text-2xl mb-2">Your todo list</h1>
         {#if isLoading}

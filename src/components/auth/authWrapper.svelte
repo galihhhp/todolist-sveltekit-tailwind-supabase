@@ -7,10 +7,8 @@
 
   $user = supabase.auth.user();
 
-  $: console.log('Auth Wrapper', $user);
-
   const redirect = () => {
-    if ($user && $page.url.pathname === '/') goto('/select-teams');
+    if ($user && $page.url.pathname === '/') goto('/todo');
     if (!$user) goto('/');
   };
 
