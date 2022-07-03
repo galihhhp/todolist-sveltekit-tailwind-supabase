@@ -21,7 +21,7 @@
       {options}
       bind:value
       name="date"
-      class="w-full bg-neutral-200 border border-neutral-900 rounded-md p-2"
+      class="w-full bg-neutral-200 border border-neutral-900 rounded-md p-2 cursor-pointer"
     />
   {:else}
     <input

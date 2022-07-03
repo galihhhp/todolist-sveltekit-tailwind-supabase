@@ -1,1 +1,1 @@
-export const tags = ['Normal', 'Urgent', 'Important', 'Unimportant'];
+export const filterItems = ['all', 'add', 'done', 'delete'];

@@ -15,9 +15,7 @@
   let descPlaceholder = 'Add a description';
 </script>
 
-<div
-  class="flex flex-col w-1/2 px-40 border-r border-neutral-300 h-screen justify-center"
->
+<div class="flex flex-col w-1/2 px-40 border-r border-neutral-300 h-screen">
   <h1 class="text-3xl font-bold truncate mb-4">
     Hallo, <br />
     {$user?.email ?? 'Unknown'}!

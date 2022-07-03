@@ -8,7 +8,7 @@
   $user = supabase.auth.user();
 
   const redirect = () => {
-    if ($user && $page.url.pathname === '/') goto('/todo');
+    if ($user && $page.url.pathname === '/') goto('/select-profile');
     if (!$user) goto('/');
   };
 

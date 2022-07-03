@@ -6,9 +6,14 @@
   import PageSkeleton from '@comp/skeletons/pageSkeleton.svelte';
   import { user } from '@lib/stores/user';
   import AddTodo from '@comp/form/addTodo.svelte';
+  import {
+    Tab,
+    TabGroup,
+    TabList,
+    TabPanel,
+    TabPanels,
+  } from '@rgossiaux/svelte-headlessui';
 
-  let startPage = 0;
-  let endPage = 9;
   let isLoading = false;
 
   let todos;
@@ -19,7 +24,6 @@
       .from('todos')
       .select('*')
       .order('created_at', { ascending: true })
-      .range(startPage, endPage)
       .eq('user_id', $user?.id);
 
     if (error) {
@@ -38,39 +42,59 @@
   <PageSkeleton />
 {:then}
   <div class="flex flex-col">
-    <div class="flex justify-center items-center mt-4 w-full h-screen">
+    <div class="flex mt-4 w-full h-screen">
       <AddTodo {getTodos} {isLoading} />
-      <div class="flex flex-col justify-center items-center gap-2 w-1/2">
+      <div class="flex flex-col items-center gap-2 w-1/2">
         <h1 class="font-bold text-2xl mb-2">Your todo list</h1>
         {#if isLoading}
           {#each todos as item}
             <TodosSkeleton />
           {/each}
+        {:else if todos}
+          <TabGroup class="w-full gap-2">
+            <TabList class="flex w-full justify-center gap-2 mb-2">
+              <Tab
+                class={({ selected }) =>
+                  selected
+                    ? 'text-neutral-200 w-1/5 font-bold bg-neutral-600 rounded-md p-2'
+                    : 'text-neutral-900 w-1/5 p-2'}>Active</Tab
+              >
+              <Tab
+                class={({ selected }) =>
+                  selected
+                    ? 'text-neutral-200 w-1/5 font-bold bg-neutral-600 rounded-md p-2'
+                    : 'text-neutral-900 w-1/5 p-2'}>Done</Tab
+              >
+              <Tab
+                class={({ selected }) =>
+                  selected
+                    ? 'text-neutral-200 w-1/5 font-bold bg-neutral-600 rounded-md p-2'
+                    : 'text-neutral-900 w-1/5 p-2'}>Due</Tab
+              >
+            </TabList>
+            <TabPanels>
+              <TabPanel class="w-full items-center flex flex-col">
+                {#each todos as todo}
+                  <Todos {todo} {getTodos} tab={0} />
+                {/each}
+              </TabPanel>
+              <TabPanel class="w-full items-center flex flex-col">
+                {#each todos as todo}
+                  <Todos {todo} {getTodos} tab={1} />
+                {/each}
+              </TabPanel>
+              <TabPanel class="w-full items-center flex flex-col">
+                {#each todos as todo}
+                  <Todos {todo} {getTodos} tab={2} />
+                {/each}
+              </TabPanel>
+            </TabPanels>
+          </TabGroup>
         {:else}
-          {#each todos as todo}
-            <Todos {todo} {getTodos} />
-          {/each}
+          <div class="flex flex-col items-center gap-2">
+            <h1 class="font-bold text-2xl mb-2">No todos yet</h1>
+          </div>
         {/if}
-        <div class="flex gap-2">
-          <button
-            disabled={startPage === 0}
-            class="p-2 bg-neutral-200 border border-neutral-300 rounded-md disabled:opacity-50 hover:bg-neutral-300"
-            on:click={async () => {
-              startPage -= 10;
-              endPage -= 10;
-              await getTodos();
-            }}>Prev</button
-          >
-          <button
-            disabled={endPage >= todos.length}
-            class="p-2 bg-neutral-200 border border-neutral-300 rounded-md disabled:opacity-50 hover:bg-neutral-300"
-            on:click={async () => {
-              startPage += 10;
-              endPage += 10;
-              await getTodos();
-            }}>Next</button
-          >
-        </div>
       </div>
     </div>
   </div>

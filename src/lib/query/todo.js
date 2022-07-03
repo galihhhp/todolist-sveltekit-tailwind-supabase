@@ -11,7 +11,7 @@ export const deleteTodo = async (id, title, userId) => {
   if (error) {
     toastFailed('FAILED: todo is not deleted, please try again later.');
   } else {
-    logs(`DELETE: ${title} is deleted.`, userId, 'delete');
+    logs(`${title} is deleted.`, userId, 'delete');
     toastSuccess(`DELETE: ${title} is deleted!`);
   }
 };
@@ -29,7 +29,7 @@ export const toggleTodo = async (id, done, title, userId) => {
   if (error) {
     toastFailed('FAILED: todo is not updated, please try again later.');
   } else {
-    logs(`DONE: ${title} is Updated`, userId, 'done');
+    logs(`${title} is updated`, userId, 'done');
     toastSuccess(`DONE: ${title} is done!`);
   }
   // location.reload();
@@ -45,7 +45,7 @@ export const addTodo = async (title, desc, deadline, userId) => {
   if (error) {
     toastFailed('FAILED: todo is not added, please try again later.');
   } else {
-    logs(`ADD: ${title} is added!`, userId, 'add');
+    logs(`${title} is added!`, userId, 'add');
     toastSuccess(`ADD: ${title} is added!`);
   }
 };
