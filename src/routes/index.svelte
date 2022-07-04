@@ -5,7 +5,7 @@
   import Input from '@comp/input.svelte';
   import { toastFailed, toastSuccess } from '@lib/utils/toast';
   import { fade } from 'svelte/transition';
-  // import AuthWrapper from '@comp/auth/authWrapper.svelte';
+  // import AuthWrapper from '@comp/auth/authWrapper.svelte'
 
   let loading = false;
   let email = '';
